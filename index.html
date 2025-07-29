@@ -118,6 +118,16 @@
     // Inicializa
     carregarPagina();
   </script>
+ function rolarParaMetadeDevagar() {
+  window.scrollTo({
+    top: window.innerHeight / 2,
+    behavior: "smooth"
+  });
+}
+
+// Opcional: executa a rolagem automática após um pequeno atraso (por exemplo, 2 segundos)
+setTimeout(rolarParaMetadeDevagar, 2000);
+
 
 </body>
 </html>
