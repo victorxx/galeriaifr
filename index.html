@@ -118,29 +118,32 @@
     // Inicializa
     carregarPagina();
   </script>
+<script>
+  function rolar5PorcentoEVolta() {
+    const posicaoInicial = window.scrollY || window.pageYOffset; // posição atual da página
+    const alturaViewport = window.innerHeight;
+    const posicaoDescer = alturaViewport * 2; // 5% da altura da tela visível
 
-function rolar5PorcentoViewport() {
-  const alturaViewport = window.innerHeight;
-  const posicao = alturaViewport * 0.05; // 5% da altura da tela visível
-
-  window.scrollBy({
-    top: posicao,
-    behavior: "smooth"
-  });
-
-  // Voltar ao topo depois de 3 segundos (3000 ms)
-  setTimeout(() => {
-    window.scrollTo({
-      top: 0,
+    // Desce 5% a partir da posição atual
+    window.scrollBy({
+      top: posicaoDescer,
       behavior: "smooth"
     });
-  }, 3000);
-}
 
-// Exemplo: rolar e voltar ao topo após 2 segundos do carregamento
-window.onload = () => {
-  setTimeout(rolar5PorcentoViewport, 5000);
-};
+    // Depois de 3 segundos, volta para a posição inicial salva
+    setTimeout(() => {
+      window.scrollTo({
+        top: posicaoInicial,
+        behavior: "smooth"
+      });
+    }, 3000);
+  }
+
+  // Exemplo: rolar e voltar após 5 segundos do carregamento da página
+  window.onload = () => {
+    setTimeout(rolar5PorcentoEVolta, 5000);
+  };
+</script>
 
 </body>
 </html>
