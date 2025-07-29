@@ -117,33 +117,47 @@
 
     // Inicializa
     carregarPagina();
-  </script>
-<script>
-  function rolar5PorcentoEVolta() {
-    const posicaoInicial = window.scrollY || window.pageYOffset; // posição atual da página
-    const alturaViewport = window.innerHeight;
-    const posicaoDescer = alturaViewport * 2; // 5% da altura da tela visível
-
-    // Desce 5% a partir da posição atual
-    window.scrollBy({
-      top: posicaoDescer,
-      behavior: "smooth"
-    });
-
-    // Depois de 3 segundos, volta para a posição inicial salva
-    setTimeout(() => {
-      window.scrollTo({
-        top: posicaoInicial,
-        behavior: "smooth"
-      });
-    }, 3000);
-  }
-
-  // Exemplo: rolar e voltar após 5 segundos do carregamento da página
-  window.onload = () => {
-    setTimeout(rolar5PorcentoEVolta, 5000);
-  };
 </script>
 
+<script>
+  function rolarDevagar(distancia, duracao, callback) {
+  const inicio = window.scrollY || window.pageYOffset;
+  const destino = inicio + distancia;
+  const inicioTempo = performance.now();
+
+  function animar(time) {
+    const tempoPassado = time - inicioTempo;
+    const progresso = Math.min(tempoPassado / duracao, 1); // vai de 0 a 1
+    const posicaoAtual = inicio + distancia * progresso;
+    window.scrollTo(0, posicaoAtual);
+
+    if (progresso < 1) {
+      requestAnimationFrame(animar);
+    } else {
+      if (callback) callback();
+    }
+  }
+
+  requestAnimationFrame(animar);
+}
+
+function rolar5PorcentoEVolta() {
+  const posicaoInicial = window.scrollY || window.pageYOffset;
+  const alturaViewport = window.innerHeight;
+  const posicaoDescer = alturaViewport * 0.05; // 5% da tela
+
+  // Rola devagar para baixo em 2 segundos (2000ms)
+  rolarDevagar(posicaoDescer, 2000, () => {
+    // Depois de 3 segundos parado, rola devagar de volta em 2 segundos
+    setTimeout(() => {
+      rolarDevagar(posicaoInicial - (posicaoInicial + posicaoDescer), 2000);
+    }, 3000);
+  });
+}
+
+window.onload = () => {
+  setTimeout(rolar5PorcentoEVolta, 5000);
+};
+</script>
 </body>
 </html>
