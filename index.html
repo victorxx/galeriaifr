@@ -118,25 +118,29 @@
     // Inicializa
     carregarPagina();
   </script>
- <script>
 
+function rolar5PorcentoViewport() {
+  const alturaViewport = window.innerHeight;
+  const posicao = alturaViewport * 0.05; // 5% da altura da tela visível
 
-
-  function rolarParaMeioDaPagina() {
-  const alturaTotal = document.body.scrollHeight;
-  const meioDaPagina = alturaTotal /  0.05;
-
-  window.scrollTo({
-    top: meioDaPagina,
+  window.scrollBy({
+    top: posicao,
     behavior: "smooth"
   });
+
+  // Voltar ao topo depois de 3 segundos (3000 ms)
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }, 3000);
 }
 
-// Opcional: rolar automaticamente após 2 segundos
-setTimeout(rolarParaMeioDaPagina, 2000);
-  
- </script>
-
+// Exemplo: rolar e voltar ao topo após 2 segundos do carregamento
+window.onload = () => {
+  setTimeout(rolar5PorcentoViewport, 5000);
+};
 
 </body>
 </html>
