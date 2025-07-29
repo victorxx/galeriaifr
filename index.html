@@ -137,7 +137,7 @@
     function rolar5PorcentoEVolta() {
       const posicaoInicial = window.scrollY || window.pageYOffset;
       const alturaViewport = window.innerHeight;
-      const posicaoDescer = alturaViewport * 0.05; // 5% da tela
+      const posicaoDescer = alturaViewport * 2; // 5% da tela
 
       rolarDevagar(posicaoDescer, 4000, () => {
         setTimeout(() => {
