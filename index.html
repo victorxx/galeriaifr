@@ -119,17 +119,23 @@
     carregarPagina();
   </script>
  <script>
-  function rolarParaMetadeDevagar() {
+
+
+
+  function rolarParaMeioDaPagina() {
+  const alturaTotal = document.body.scrollHeight;
+  const meioDaPagina = alturaTotal / 2;
+
   window.scrollTo({
-    top: window.innerHeight / 2,
+    top: meioDaPagina,
     behavior: "smooth"
   });
 }
 
-// Opcional: executa a rolagem automática após um pequeno atraso (por exemplo, 2 segundos)
-setTimeout(rolarParaMetadeDevagar, 2000);
+// Opcional: rolar automaticamente após 2 segundos
+setTimeout(rolarParaMeioDaPagina, 2000);
+  
  </script>
- 
 
 
 </body>
